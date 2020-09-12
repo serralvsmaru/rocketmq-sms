@@ -22,4 +22,8 @@ public class SmsConfig implements Serializable {
     private String templateCode;
     @Value("${alisms.signName}")
     private String signName;
+    @Value("${alisms.product}")
+    private String product;
+    @Value("${alisms.domain}")
+    private String domain;
 }

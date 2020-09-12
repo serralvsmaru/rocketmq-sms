@@ -12,13 +12,10 @@ import com.konosuba.rocketmq.sms.consumer.config.SmsConfig;
 import com.konosuba.rocketmq.sms.consumer.domain.dto.PhoneDto;
 import com.konosuba.rocketmq.sms.consumer.service.SmsService;
 import com.konosuba.rocketmq.sms.consumer.utils.VerificationCodeUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.InputStream;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -56,14 +53,24 @@ public class SmsServiceImpl implements SmsService {
 
         // 组装请求对象
         CommonRequest request = new CommonRequest();
+        // 发送短信的请求方式
         request.setSysMethod(MethodType.POST);
-        request.setSysDomain("dysmsapi.aliyuncs.com");
-        request.setVersion("2017-05-25");
+        // 短信API产品名称
+        request.setSysDomain(smsConfig.getDomain());
+        // 短信API产品域名
+        request.setSysProduct(smsConfig.getProduct());
+        // 版本号，看着阿里的文档改
+        request.setSysVersion("2017-05-25");
         request.setSysAction("SendSms");
+        // 地域ID
         request.setSysRegionId("cn-hangzhou");
+        // 收信人手机号
         request.putQueryParameter("PhoneNumbers", phone);
+        // 签名
         request.putQueryParameter("SignName", smsConfig.getSignName());
+        // 短信模板
         request.putQueryParameter("TemplateCode", smsConfig.getTemplateCode());
+        // 验证码，要将 JSON 格式
         request.putQueryParameter("TemplateParam", smsJson.toJSONString());
         // 发送失败不会再次尝试
         try {

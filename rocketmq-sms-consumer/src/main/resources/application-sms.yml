@@ -8,4 +8,8 @@ alisms:
   templateCode: # <模板编号>
   # 自己的签名名称
   signName: # <签名>
+  # 短信API产品名称(短信产品名固定，无需修改)
+  product: Dysmsapi
+  # 短信API产品域名（接口地址固定，无需修改）
+  domain: dysmsapi.aliyuncs.com
 
