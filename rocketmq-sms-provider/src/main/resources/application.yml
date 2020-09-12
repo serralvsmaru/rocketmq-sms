@@ -1,0 +1,13 @@
+server:
+  port: 9091
+
+spring:
+  application:
+    name: sms-provider-xtl
+  cloud:
+    stream:
+      bindings:
+        output: {destination: sms-topic-xtl, content-type: application/json}
+      rocketmq:
+        binder:
+          name-server: 120.25.207.44:9876

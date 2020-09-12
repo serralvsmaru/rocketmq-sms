@@ -1,0 +1,11 @@
+alisms:
+  # 阿里自己的accessKeyId
+  accessKeyId: # <accessKeyId>
+  # 阿里自己的accessKeySecret
+  accessSecret: # <accessKeySecret>
+  enable: true
+  # 自己的短信模板的编号
+  templateCode: # <模板编号>
+  # 自己的签名名称
+  signName: # <签名>
+

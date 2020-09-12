@@ -1,0 +1,10 @@
+server:
+  port: 9092
+spring:
+  profiles:
+    active: redis, rocketmq, sms
+  application:
+    name: sms-comsumer-xtl
+
+
+
